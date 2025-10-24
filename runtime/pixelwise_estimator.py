@@ -28,8 +28,10 @@ from typing import Optional, Union
 
 import numpy as np
 from onnxruntime import InferenceSession
-from utils import ONNX_EP, ModelNotFoundError, prepare_image_for_model, preprocess_img
-
+try:
+    from utils import ONNX_EP, ModelNotFoundError, prepare_image_for_model, preprocess_img
+except ImportError as e:
+    from runtime.utils import ONNX_EP, ModelNotFoundError, prepare_image_for_model, preprocess_img
 
 class RuntimeSession(InferenceSession):
     """The runtime session."""

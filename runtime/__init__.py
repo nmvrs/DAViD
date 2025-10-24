@@ -22,27 +22,52 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+    
+try:        
+    from .soft_foreground_segmenter import SoftForegroundSegmenter
+    from .utils import composite_model_output_to_image, prepare_image_for_model
+    from .visualize import visualize_relative_depth_map
+except ImportError as e:
+    from runtime.soft_foreground_segmenter import SoftForegroundSegmenter
+    from runtime.utils import composite_model_output_to_image, prepare_image_for_model
+    from runtime.visualize import visualize_relative_depth_map
+    __all__ = [
+        "visualize_relative_depth_map",
+        "SoftForegroundSegmenter",    
+    ]
 
-from .depth_estimator import RelativeDepthEstimator
-from .multi_task_estimator import MultiTaskEstimator
-from .pixelwise_estimator import PixelwiseEstimator, RuntimeSession, preprocess_img
-from .soft_foreground_segmenter import SoftForegroundSegmenter
-from .surface_normal_estimator import SurfaceNormalEstimator
-from .utils import composite_model_output_to_image, prepare_image_for_model
-from .visualize import visualize_relative_depth_map
+try:
+    from .depth_estimator import RelativeDepthEstimator
+except ImportError as e:
+    print("Failed to import RelativeDepthEstimator:", e)
+    
+try:
+    from .multi_task_estimator import MultiTaskEstimator
+except ImportError as e:
+    print("Failed to import RelativeDepthEstimator:", e)
+    
+try:
+    from .pixelwise_estimator import PixelwiseEstimator, RuntimeSession, preprocess_img
+except ImportError as e:
+    print("Failed to import RelativeDepthEstimator:", e)
+    
+try:
+    from .surface_normal_estimator import SurfaceNormalEstimator
+except ImportError as e:
+    print("Failed to import RelativeDepthEstimator:", e)
 
-__all__ = [
-    "PixelwiseEstimator",
-    "preprocess_img",
-    "RuntimeSession",
-    "prepare_image_for_model",
-    "composite_model_output_to_image",
-    "ONNX_EP",
-    "ModelNotFoundError",
-    "ModelError",
-    "RelativeDepthEstimator",
-    "visualize_relative_depth_map",
-    "SoftForegroundSegmenter",
-    "SurfaceNormalEstimator",
-    "MultiTaskEstimator",
-]
+# __all__ = [
+#     "PixelwiseEstimator",
+#     "preprocess_img",
+#     "RuntimeSession",
+#     "prepare_image_for_model",
+#     "composite_model_output_to_image",
+#     "ONNX_EP",
+#     "ModelNotFoundError",
+#     "ModelError",
+#     "RelativeDepthEstimator",
+#     "visualize_relative_depth_map",
+#     "SoftForegroundSegmenter",
+#     "SurfaceNormalEstimator",
+#     "MultiTaskEstimator",
+# ]

@@ -28,8 +28,14 @@ from typing import Optional, Union
 
 import cv2
 import numpy as np
-from pixelwise_estimator import PixelwiseEstimator
-from utils import composite_model_output_to_image
+try:
+    from pixelwise_estimator import PixelwiseEstimator
+except ImportError as e:
+    from runtime.pixelwise_estimator import PixelwiseEstimator
+try:
+    from utils import composite_model_output_to_image
+except ImportError as e:
+    from runtime.utils import composite_model_output_to_image
 
 
 class SurfaceNormalEstimator(PixelwiseEstimator):
